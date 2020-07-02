@@ -1,0 +1,13 @@
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.exe
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.deps.json
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.runtimeconfig.json
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.runtimeconfig.dev.json
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.dll
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.pdb
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.csprojAssemblyReference.cache
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.AssemblyInfoInputs.cache
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.AssemblyInfo.cs
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.csproj.CoreCompileInputs.cache
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.dll
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.pdb
+D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.genruntimeconfig.cache

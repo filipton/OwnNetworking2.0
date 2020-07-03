@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iKtrCzxxhuuQDapseXWnI8c4PPUd6qL1IKLI1HgvbC/eniiHY5lojHaLLcvERX3OJ9AP+Oa4NpnTJC2l6Mz3sw==",
+  "dgSpecHash": "ojcjw8oMaqGH6W3/NYkeAFl9+telNhykIxfiF5t+YyieimyY+pIL1xlj4EVorbnucY9wUsiiNkDZT7aCJUf8Xg==",
   "success": true,
-  "projectFilePath": "D:\\VisualStudio\\Projects\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
+  "projectFilePath": "D:\\Unity Projects\\OwnNetworking2.0\\DedicatedServer\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

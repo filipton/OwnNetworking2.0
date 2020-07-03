@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VisualStudio\\Projects\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
+      "projectUniqueName": "D:\\Unity Projects\\OwnNetworking2.0\\DedicatedServer\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
       "projectName": "GameServerUDP",
-      "projectPath": "D:\\VisualStudio\\Projects\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
+      "projectPath": "D:\\Unity Projects\\OwnNetworking2.0\\DedicatedServer\\GameServerUDP\\GameServerUDP\\GameServerUDP.csproj",
       "packagesPath": "C:\\Users\\filip\\.nuget\\packages\\",
-      "outputPath": "D:\\VisualStudio\\Projects\\GameServerUDP\\GameServerUDP\\obj\\",
+      "outputPath": "D:\\Unity Projects\\OwnNetworking2.0\\DedicatedServer\\GameServerUDP\\GameServerUDP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\filip\\AppData\\Roaming\\NuGet\\NuGet.Config",

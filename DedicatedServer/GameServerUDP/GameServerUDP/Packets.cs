@@ -8,13 +8,15 @@ namespace GameServerUDP
     {
         RegisterPacket,
         ChatPacket,
-        HeartbeatPacket
+        HeartbeatPacket,
+        MovementPacket
     }
 
     public enum ClientPackets
     {
         RegisterPacketClient,
         ChatPacketClient,
-        HeartBeatCallbackPacket
+        HeartBeatCallbackPacket,
+        PlayerMovementPacket
     }
 }

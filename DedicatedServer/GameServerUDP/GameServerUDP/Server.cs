@@ -130,17 +130,28 @@ namespace GameServerUDP
 								heartBeatClients[index] = new HeartBeatClient(iPEndPoint, true);
 							}
 						}
+						else if (clientPacket == ClientPackets.PlayerMovementPacket)
+						{
+							string[] svectors = pocketMessage.Split(':');
+							if(svectors.Length == 3)
+							{
+								BroadcastPacketExclude(ServerPackets.MovementPacket, iPEndPoint, pocketMessage);
+							}
+							else
+							{
+								WriteLine($"An error occured when parsing packet: {ClientPackets.PlayerMovementPacket}!", ConsoleColor.Red);
+							}
+						}
 					}
 					else if (_clients.Count < MaxConnections && _clients.FindIndex(x => x.IPEndPoint.Equals(iPEndPoint)) < 0)
 					{
+						//all before register to web
+
 						if (clientPacket == ClientPackets.RegisterPacketClient)
 						{
-							if (_clients.FindIndex(x => x.IPEndPoint.Equals(iPEndPoint)) < 0)
-							{
-								_clients.Add(new NetClient(iPEndPoint, pocketMessage));
-								WriteLine($"[+] Player connected! ({pocketMessage}) ({iPEndPoint.Address}:{iPEndPoint.Port}) [{_clients.Count}/{MaxConnections}]", ConsoleColor.Green);
-								Console.Title = _clients.Count.ToString() + "/" + MaxConnections;
-							}
+							_clients.Add(new NetClient(iPEndPoint, pocketMessage));
+							WriteLine($"[+] Player connected! ({pocketMessage}) ({iPEndPoint.Address}:{iPEndPoint.Port}) [{_clients.Count}/{MaxConnections}]", ConsoleColor.Green);
+							Console.Title = _clients.Count.ToString() + "/" + MaxConnections;
 						}
 					}
 				}
@@ -173,6 +184,7 @@ namespace GameServerUDP
 
 		public void BroadcastPacket(ServerPackets sp, string _data = null) => Broadcast($"[{sp}] {_data}");
 		public void BroadcastPacket(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => Broadcast($"[{sp}] {_data}", iPEndPoint);
+		public void BroadcastPacketExclude(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => BroadcastExclude($"[{sp}] {_data}", iPEndPoint);
 
 		public void Broadcast(string _data)
 		{
@@ -189,6 +201,16 @@ namespace GameServerUDP
 				{
 					server.Send(_data, client.IPEndPoint);
 					break;
+				}
+			}
+		}
+		public void BroadcastExclude(string _data, IPEndPoint iPEndPoint)
+		{
+			foreach (NetClient client in _clients.ToArray())
+			{
+				if (!client.IPEndPoint.Equals(iPEndPoint))
+				{
+					server.Send(_data, client.IPEndPoint);
 				}
 			}
 		}

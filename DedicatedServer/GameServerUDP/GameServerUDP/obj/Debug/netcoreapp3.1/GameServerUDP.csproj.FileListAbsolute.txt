@@ -11,3 +11,16 @@ D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\Gam
 D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.dll
 D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.pdb
 D:\VisualStudio\Projects\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.genruntimeconfig.cache
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.exe
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.deps.json
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.runtimeconfig.json
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.runtimeconfig.dev.json
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.dll
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\bin\Debug\netcoreapp3.1\GameServerUDP.pdb
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.csprojAssemblyReference.cache
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.AssemblyInfoInputs.cache
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.AssemblyInfo.cs
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.csproj.CoreCompileInputs.cache
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.dll
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.pdb
+D:\Unity Projects\OwnNetworking2.0\DedicatedServer\GameServerUDP\GameServerUDP\obj\Debug\netcoreapp3.1\GameServerUDP.genruntimeconfig.cache

@@ -10,18 +10,22 @@ public enum ServerPackets
 {
 	RegisterPacket,
 	ChatPacket,
-	HeartbeatPacket
+	HeartbeatPacket,
+	MovementPacket
 }
 
 public enum ClientPackets
 {
 	RegisterPacketClient,
 	ChatPacketClient,
-	HeartBeatCallbackPacket
+	HeartBeatCallbackPacket,
+	PlayerMovementPacket
 }
 
 public class NetManager : MonoBehaviour
 {
+	public static NetManager singleton;
+
 	public bool IsClientRunning;
 	public Image img;
 	UdpUser client;
@@ -29,8 +33,9 @@ public class NetManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+		singleton = this;
 		IsClientRunning = true;
-		RunClient("127.0.0.1", "MOJ STARY");
+		RunClient("192.168.1.107", "MOJ STARY");
     }
 
     // Update is called once per frame
@@ -41,14 +46,12 @@ public class NetManager : MonoBehaviour
 
 	private void OnApplicationQuit()
 	{
-		print("YOS");
 		IsClientRunning = false;
 	}
 
 
 	public void RunClient(string ip, string nick = "", int Port = 7777)
 	{
-
 		client = UdpUser.ConnectTo(ip, Port);
 		SendPacket(ClientPackets.RegisterPacketClient, nick);
 		Task.Factory.StartNew(async () =>
@@ -70,6 +73,8 @@ public class NetManager : MonoBehaviour
 
 	public void CheckPacket(string data, IPEndPoint iPEndPoint)
 	{
+		//print("XDX");
+
 		if (data == "ERROR") return;
 
 		int startPos = data.IndexOf("[") + "[".Length;
@@ -88,13 +93,15 @@ public class NetManager : MonoBehaviour
 				{
 					SendPacket(ClientPackets.HeartBeatCallbackPacket);
 				}
-				else if (serverPackets == ServerPackets.ChatPacket)
+				else if (serverPackets == ServerPackets.MovementPacket)
 				{
-					WriteLine(pocketMessage, ConsoleColor.Yellow);
+					string[] svectors = pocketMessage.Split(':');
+					float[] vectors = Array.ConvertAll(svectors, float.Parse);
+
+
 					ThreadManager.ExecuteOnMainThread(() =>
 					{
-						img.name = pocketMessage;
-						img.color = UnityEngine.Random.ColorHSV();
+						img.transform.localPosition = new Vector3(vectors[0], vectors[1], vectors[2]);
 					});
 				}
 			}

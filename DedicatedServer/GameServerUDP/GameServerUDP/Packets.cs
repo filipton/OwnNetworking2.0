@@ -9,7 +9,9 @@ namespace GameServerUDP
         RegisterPacket,
         ChatPacket,
         HeartbeatPacket,
-        MovementPacket
+        NetworkSyncPacket,
+        SpawnPlayerPacket,
+        DeSpawnPlayerPacket
     }
 
     public enum ClientPackets
@@ -17,6 +19,6 @@ namespace GameServerUDP
         RegisterPacketClient,
         ChatPacketClient,
         HeartBeatCallbackPacket,
-        PlayerMovementPacket
+        PlayerNetworkSyncPacket
     }
 }

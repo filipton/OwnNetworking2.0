@@ -29,6 +29,18 @@ namespace GameServerUDP
         }
     }
 
+    public struct PlayerAuthority
+	{
+        public string Nick;
+        public int playerId;
+
+        public PlayerAuthority(string nick, int pid)
+		{
+            Nick = nick;
+            playerId = pid;
+		}
+	}
+
     public struct Received
     {
         public IPEndPoint Sender;

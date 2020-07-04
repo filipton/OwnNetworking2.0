@@ -13,16 +13,20 @@ namespace GameServerUDP
 		public bool IsServerRunning;
 
 		//settings
-		public float HearthBeatTime => 1;
+		public float HearthBeatTime => 0.5f;
 		public int MaxConnections => 20;
 
 		//debug settings
 		public bool PacketReceivedMessage => false;
 		public bool HearthBeatMessage => false;
 
+		int NextPId = 0;
+
 
 		public List<NetClient> _clients = new List<NetClient>();
 		public List<HeartBeatClient> heartBeatClients = new List<HeartBeatClient>();
+
+		public List<PlayerAuthority> playerAuthorities = new List<PlayerAuthority>();
 
 		public void RunServer(int port = 7777)
 		{
@@ -87,6 +91,13 @@ namespace GameServerUDP
 							NetClient client = _clients[userIndex];
 							_clients.RemoveAt(userIndex);
 
+							int index = playerAuthorities.FindIndex(x => x.Nick == client.Nick);
+							if(index > -1)
+							{
+								BroadcastPacket(ServerPackets.DeSpawnPlayerPacket, playerAuthorities[index].playerId.ToString());
+								playerAuthorities.RemoveAt(index);
+							}
+
 							WriteLine($"[-] Player disconnected! ({client.Nick}) ({client.IPEndPoint.Address}:{client.IPEndPoint.Port}) [{_clients.Count}/{MaxConnections}]", ConsoleColor.Red);
 							Console.Title = _clients.Count.ToString() + "/" + MaxConnections;
 						}
@@ -130,27 +141,37 @@ namespace GameServerUDP
 								heartBeatClients[index] = new HeartBeatClient(iPEndPoint, true);
 							}
 						}
-						else if (clientPacket == ClientPackets.PlayerMovementPacket)
+						else if (clientPacket == ClientPackets.PlayerNetworkSyncPacket)
 						{
 							string[] svectors = pocketMessage.Split(':');
-							if(svectors.Length == 3)
+							if(svectors.Length == 6)
 							{
-								BroadcastPacketExclude(ServerPackets.MovementPacket, iPEndPoint, pocketMessage);
+								BroadcastPacketExclude(ServerPackets.NetworkSyncPacket, iPEndPoint, pocketMessage);
 							}
 							else
 							{
-								WriteLine($"An error occured when parsing packet: {ClientPackets.PlayerMovementPacket}!", ConsoleColor.Red);
+								WriteLine($"An error occured when parsing packet: {ClientPackets.PlayerNetworkSyncPacket}!", ConsoleColor.Red);
 							}
 						}
 					}
 					else if (_clients.Count < MaxConnections && _clients.FindIndex(x => x.IPEndPoint.Equals(iPEndPoint)) < 0)
 					{
-						//all before register to web
-
 						if (clientPacket == ClientPackets.RegisterPacketClient)
 						{
 							_clients.Add(new NetClient(iPEndPoint, pocketMessage));
+
+							foreach(PlayerAuthority pa in playerAuthorities)
+							{
+								BroadcastPacket(ServerPackets.SpawnPlayerPacket, iPEndPoint, pa.playerId.ToString());
+							}
+
+							playerAuthorities.Add(new PlayerAuthority(pocketMessage, NextPId));
+
+							BroadcastPacket(ServerPackets.RegisterPacket, iPEndPoint, NextPId.ToString());
+							BroadcastPacket(ServerPackets.SpawnPlayerPacket, (NextPId++).ToString());
+
 							WriteLine($"[+] Player connected! ({pocketMessage}) ({iPEndPoint.Address}:{iPEndPoint.Port}) [{_clients.Count}/{MaxConnections}]", ConsoleColor.Green);
+
 							Console.Title = _clients.Count.ToString() + "/" + MaxConnections;
 						}
 					}

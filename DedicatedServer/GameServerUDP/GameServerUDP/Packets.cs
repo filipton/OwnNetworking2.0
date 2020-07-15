@@ -6,7 +6,7 @@ namespace GameServerUDP
 {
     public enum ServerPackets
     {
-        RegisterPacket,
+        RegisterPacket = 1,
         ChatPacket,
         HeartbeatPacket,
         NetworkSyncPacket,
@@ -16,7 +16,7 @@ namespace GameServerUDP
 
     public enum ClientPackets
     {
-        RegisterPacketClient,
+        RegisterPacketClient = 1,
         ChatPacketClient,
         HeartBeatCallbackPacket,
         PlayerNetworkSyncPacket

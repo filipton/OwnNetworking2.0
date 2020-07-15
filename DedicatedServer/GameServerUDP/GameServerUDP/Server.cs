@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GameServerUDP
 		//settings
 		public float HearthBeatTime => 0.5f;
 		public int MaxConnections => 20;
+		public int TPS = 120;
 
 		//debug settings
 		public bool PacketReceivedMessage => false;
@@ -122,12 +124,10 @@ namespace GameServerUDP
 
 			if (length > 0)
 			{
-				string packetName = data.Substring(startPos, length);
-
-				if (Enum.TryParse(typeof(ClientPackets), packetName, out object cp))
+				if (int.TryParse(data.Substring(startPos, length), out int packetId))
 				{
-					ClientPackets clientPacket = (ClientPackets)cp;
-					string pocketMessage = data.Replace($"[{clientPacket}] ", "");
+					ClientPackets clientPacket = (ClientPackets)packetId;
+					string pocketMessage = data.Replace($"[{packetId}] ", "");
 
 					if (_clients.FindIndex(x => x.IPEndPoint.Equals(iPEndPoint)) > -1)
 					{
@@ -144,7 +144,8 @@ namespace GameServerUDP
 						else if (clientPacket == ClientPackets.PlayerNetworkSyncPacket)
 						{
 							string[] svectors = pocketMessage.Split(':');
-							if(svectors.Length == 6)
+
+							if (svectors.Length == 6)
 							{
 								BroadcastPacketExclude(ServerPackets.NetworkSyncPacket, iPEndPoint, pocketMessage);
 							}
@@ -196,16 +197,10 @@ namespace GameServerUDP
 			Console.WriteLine(dateString + _data);
 			Console.ResetColor();
 		}
-		public void WriteLineCentered(string _data, ConsoleColor c)
-		{
-			Console.ForegroundColor = c;
-			Console.WriteLine("{0," + ((Console.WindowWidth / 2) + _data.Length / 2) + "}", _data);
-			Console.ResetColor();
-		}
 
-		public void BroadcastPacket(ServerPackets sp, string _data = null) => Broadcast($"[{sp}] {_data}");
-		public void BroadcastPacket(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => Broadcast($"[{sp}] {_data}", iPEndPoint);
-		public void BroadcastPacketExclude(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => BroadcastExclude($"[{sp}] {_data}", iPEndPoint);
+		public void BroadcastPacket(ServerPackets sp, string _data = null) => Broadcast($"[{(int)sp}] {_data}");
+		public void BroadcastPacket(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => Broadcast($"[{(int)sp}] {_data}", iPEndPoint);
+		public void BroadcastPacketExclude(ServerPackets sp, IPEndPoint iPEndPoint, string _data = null) => BroadcastExclude($"[{(int)sp}] {_data}", iPEndPoint);
 
 		public void Broadcast(string _data)
 		{

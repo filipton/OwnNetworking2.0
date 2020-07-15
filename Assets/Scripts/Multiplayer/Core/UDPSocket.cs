@@ -6,12 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public struct Received
-{
-    public IPEndPoint Sender;
-    public string Message;
-}
-
 abstract class UdpBase
 {
     protected UdpClient Client;

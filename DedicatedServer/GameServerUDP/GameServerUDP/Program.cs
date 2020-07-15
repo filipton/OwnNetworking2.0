@@ -23,13 +23,5 @@ namespace GameServerUDP
 				server.RunServer();
 			}
 		}
-		public static void WriteLine(string _data, ConsoleColor c)
-		{
-			string dateString = $"[{DateTime.Now.ToString("HH:mm:ss")}] ";
-
-			Console.ForegroundColor = c;
-			Console.WriteLine(dateString + _data);
-			Console.ResetColor();
-		}
 	}
 }

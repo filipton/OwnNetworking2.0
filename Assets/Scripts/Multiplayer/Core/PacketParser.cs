@@ -25,17 +25,18 @@ public static class PacketParser
 
 public enum ServerPackets
 {
-    RegisterPacket,
+    RegisterPacket = 1,
     ChatPacket,
     HeartbeatPacket,
     NetworkSyncPacket,
     SpawnPlayerPacket,
-    DeSpawnPlayerPacket
+    DeSpawnPlayerPacket,
+    TpPlayerPacket
 }
 
 public enum ClientPackets
 {
-    RegisterPacketClient,
+    RegisterPacketClient = 1,
     ChatPacketClient,
     HeartBeatCallbackPacket,
     PlayerNetworkSyncPacket

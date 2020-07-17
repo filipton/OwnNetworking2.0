@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager : NetworkBehavoiur
 {
 	public static NetworkManager singleton;
 
@@ -60,9 +60,6 @@ public class NetworkManager : MonoBehaviour
 		IsClientRunning = false;
 		IsServerRunning = false;
 	}
-
-	public bool IsServerOnly() => IsServerRunning && !IsClientRunning;
-	public bool IsClientOnly() => IsClientRunning && !IsServerRunning;
 
 
 	#region Client
@@ -184,15 +181,15 @@ public class NetworkManager : MonoBehaviour
 
 						ThreadManager.ExecuteOnMainThread(() =>
 						{
-							bool b = nId.GetComponent<PlayerMovement>().enabled;
-							if (b) nId.GetComponent<PlayerMovement>().enabled = false;
-
+							if (nId.IsLocalPlayer()) nId.GetComponent<CharacterController>().enabled = false;
+							
 							nId.PlayerRoot.position = pos;
 							nId.Camera.transform.localRotation = Quaternion.Euler(_rotX, 0, 0);
 							nId.PlayerHead.localRotation = Quaternion.Euler(_rotX, 0, 0);
 							nId.PlayerRoot.rotation = Quaternion.Euler(0, _rotY, 0);
 
-							if (b) nId.GetComponent<PlayerMovement>().enabled = true;
+							if (nId.IsLocalPlayer()) nId.GetComponent<CharacterController>().enabled = true;
+
 						});
 					}
 					else
@@ -219,7 +216,6 @@ public class NetworkManager : MonoBehaviour
 	{
 		Debug.Log($"<b><color=#{ColorUtility.ToHtmlStringRGB(c)}>{_data}</color></b>");
 	}
-
 	#endregion
 
 	#region Server
@@ -469,9 +465,4 @@ public class NetworkManager : MonoBehaviour
 		}
 	}
 	#endregion
-
-	public static bool IsHeadlessMode()
-	{
-		return UnityEngine.SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null;
-	}
 }

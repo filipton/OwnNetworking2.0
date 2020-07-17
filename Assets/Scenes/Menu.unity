@@ -1142,7 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225dc6796e506f34aac79e342ac67ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ip: 192.168.1.107
+  Ip: 127.0.0.1
   Port: 7777
   offlineScene: Menu
   onlineScene: SampleScene

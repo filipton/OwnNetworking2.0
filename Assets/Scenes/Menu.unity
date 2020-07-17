@@ -625,6 +625,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914053865}
   - component: {fileID: 914053864}
+  - component: {fileID: 914053863}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -632,6 +633,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!81 &914053863
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914053862}
+  m_Enabled: 1
 --- !u!20 &914053864
 Camera:
   m_ObjectHideFlags: 0
@@ -1102,7 +1111,6 @@ GameObject:
   - component: {fileID: 1835810537}
   - component: {fileID: 1835810536}
   - component: {fileID: 1835810535}
-  - component: {fileID: 1835810534}
   m_Layer: 0
   m_Name: _NetworkManager
   m_TagString: Untagged
@@ -1110,14 +1118,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1835810534
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835810533}
-  m_Enabled: 1
 --- !u!114 &1835810535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,14 +1148,13 @@ MonoBehaviour:
   onlineScene: SampleScene
   playerPrefab: {fileID: 7589675875293938912, guid: 4b7fefcffaa055946a9cb5b425f9ec02,
     type: 3}
-  HearthBeatTime: 1
   MaxConnections: 20
-  PacketReceivedMessage: 0
-  HearthBeatMessage: 0
   IsClientRunning: 0
   IsServerRunning: 0
   LocalPId: -1
   networkPlayers: []
+  Client: {fileID: 0}
+  Server: {fileID: 0}
 --- !u!4 &1835810537
 Transform:
   m_ObjectHideFlags: 0

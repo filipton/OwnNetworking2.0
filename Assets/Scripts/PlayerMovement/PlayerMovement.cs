@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f * 2;
 
     public bool isRunning;
+    public bool isGrounded;
 
     public LayerMask WhatIsGround;
     Vector3 velocity;
@@ -102,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         }
 		else
 		{
-            bool isGrounded = Physics.CheckSphere(GroundCheck.transform.position, 0.1f, WhatIsGround);
+            isGrounded = Physics.CheckSphere(GroundCheck.transform.position, 0.1f, WhatIsGround);
 
             if (isGrounded && velocity.y < 0)
             {

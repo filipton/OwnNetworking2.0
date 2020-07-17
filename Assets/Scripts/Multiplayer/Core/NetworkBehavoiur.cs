@@ -14,4 +14,9 @@ public class NetworkBehavoiur : MonoBehaviour
 
 	public bool IsServerOnly() => NetworkManager.singleton.IsServerRunning && !NetworkManager.singleton.IsClientRunning;
 	public bool IsClientOnly() => NetworkManager.singleton.IsClientRunning && !NetworkManager.singleton.IsServerRunning;
+
+	public void WriteLine(string _data, Color c)
+	{
+		Debug.Log($"<b><color=#{ColorUtility.ToHtmlStringRGB(c)}>{_data}</color></b>");
+	}
 }

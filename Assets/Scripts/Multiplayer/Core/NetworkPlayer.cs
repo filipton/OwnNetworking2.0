@@ -30,7 +30,7 @@ public class NetworkPlayer : NetworkIdentity
 	{
 		if (IsLocalPlayer())
 		{
-			NetworkManager.singleton.SendPacket(ClientPackets.PlayerNetworkSyncPacket, PacketParser.NetworkSyncPacketToString(ObjectId, PlayerRoot.position, new Vector3(Camera.transform.eulerAngles.x, PlayerRoot.eulerAngles.y, 0)));
+			NetworkManager.singleton.Client.SendPacket(ClientPackets.PlayerNetworkSyncPacket, PacketParser.NetworkSyncPacketToString(ObjectId, PlayerRoot.position, new Vector3(Camera.transform.eulerAngles.x, PlayerRoot.eulerAngles.y, 0)));
 
 			roundTimeText.text = roundTimer.Elapsed.ToString();
 		}
@@ -42,7 +42,7 @@ public class NetworkPlayer : NetworkIdentity
 		{
 			if (IsServer())
 			{
-				NetworkManager.singleton.BroadcastPacket(ServerPackets.TpPlayerPacket, PacketParser.NetworkSyncPacketToString(ObjectId, Vector3.zero + Vector3.up, Vector3.zero));
+				NetworkManager.singleton.Server.BroadcastPacket(ServerPackets.TpPlayerPacket, PacketParser.NetworkSyncPacketToString(ObjectId, Vector3.zero + Vector3.up, Vector3.zero));
 			}
 		}
 		else if (other.gameObject.name == "EndTrigger")
@@ -56,7 +56,7 @@ public class NetworkPlayer : NetworkIdentity
 
 			if (IsServer())
 			{
-				NetworkManager.singleton.BroadcastPacket(ServerPackets.TpPlayerPacket, PacketParser.NetworkSyncPacketToString(ObjectId, Vector3.zero + Vector3.up, Vector3.zero));
+				NetworkManager.singleton.Server.BroadcastPacket(ServerPackets.TpPlayerPacket, PacketParser.NetworkSyncPacketToString(ObjectId, Vector3.zero + Vector3.up, Vector3.zero));
 			}
 		}
 	}

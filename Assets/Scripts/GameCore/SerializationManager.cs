@@ -3,43 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using UnityEngine;
 
 namespace Serialization_Manager
 {
     public class SerializationManager : MonoBehaviour
     {
-        public static bool SaveObject<T>(string key, T Data)
+        public static string SaveObject<T>(T Data)
         {
             BinaryFormatter formatter = new BinaryFormatter();
-            string path = Path.Combine(Application.persistentDataPath + $"/{key}.data");
-            FileStream stream = new FileStream(path, FileMode.Create);
 
-            T data = Data;
-
-            formatter.Serialize(stream, data);
-            stream.Close();
-
-            return true;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                T data = Data;
+                formatter.Serialize(ms, data);
+                print(ms.ToArray().Length);
+                return Convert.ToBase64String(ms.ToArray());
+            }
         }
 
         public static T LoadObject<T>(string key)
         {
-            string path = Path.Combine(Application.persistentDataPath + $"/{key}.data");
-
-            if (File.Exists(path))
+            if (!string.IsNullOrEmpty(key))
             {
+                byte[] bytes = Convert.FromBase64String(key);
                 BinaryFormatter formatter = new BinaryFormatter();
-                FileStream stream = new FileStream(path, FileMode.Open);
 
-                T data = (T)formatter.Deserialize(stream);
-                stream.Close();
+                using (var ms = new MemoryStream(bytes, 0, bytes.Length))
+                {
+                    T data = (T)formatter.Deserialize(ms);
 
-                return data;
+                    return data;
+                }
             }
             else
             {
-                Debug.LogError("Save file not found in " + path);
                 return default(T);
             }
         }
